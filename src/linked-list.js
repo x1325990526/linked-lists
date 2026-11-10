@@ -98,8 +98,7 @@ export default class LinkedList {
     }
 
     removeAt(index) {
-        
-        if(index < 0|| index > this.size()) {
+        if(index < 0|| index >= this.size()) {
             throw new RangeError("index must be non-negative number and not exceed list size");
         }
         let prev = null;
