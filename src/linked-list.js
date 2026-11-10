@@ -77,6 +77,47 @@ export default class LinkedList {
         }
         return -1;
     }
+    
+    insertAt(index, ...values) {
+        if(index < 0 || index > this.size()) {
+            throw new RangeError("index must be non-negative number and not exceed list size");
+        }
+        let prev = null;
+        let cur = this.h;
+        for(let i = 0; i < index; i++) {
+            prev = cur;
+            cur = cur.next;
+        }
+        
+        for (const value of values) {
+            const node = new Node(value, cur);
+            if(prev === null) this.h = node;
+            else prev.next = node;
+            prev = node;
+        }
+    }
+
+    removeAt(index) {
+        
+        if(index < 0|| index > this.size()) {
+            throw new RangeError("index must be non-negative number and not exceed list size");
+        }
+        let prev = null;
+        let cur = this.h;
+        for(let i = 0; i < index; i++) {
+            prev = cur;
+            cur = cur.next;
+        }
+        if(prev === null) {
+            this.h = this.h.next;
+            return;
+        }
+        prev.next = cur.next;
+
+
+
+
+    }
 
     toString() {
         if (this.h === null) return '';
